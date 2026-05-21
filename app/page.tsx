@@ -820,20 +820,20 @@ export default function Home() {
               {/* Architecture Columns */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-[#0B0D12]/60 p-4 rounded-xl border border-slate-800/40">
-                  <h4 className="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">1. The Command Center</h4>
-                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                  <h4 className="text-sm font-semibold text-cyan-400 uppercase tracking-wider mb-2">1. The Command Center</h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">
                     React workspace built on Next.js. Retrieves layouts using the Jina Reader API to get a semantic Markdown representation of the page DOM. Passes layout markdown + instructions to Google Gemini 2.5 Flash Lite using dynamic structured JSON schemas to deterministically model sequential test plans.
                   </p>
                 </div>
                 <div className="bg-[#0B0D12]/60 p-4 rounded-xl border border-slate-800/40">
-                  <h4 className="text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-2">2. The Execution Engine</h4>
-                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                  <h4 className="text-sm font-semibold text-indigo-400 uppercase tracking-wider mb-2">2. The Execution Engine</h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">
                     Manifest V3 Extension background/content scripts acting as a headless sandbox. Relays actions via message-passing ports, executing native DOM sequences to bypass synthetic framework traps (React/Vue), and verifying strict geometric dimensions for visibility.
                   </p>
                 </div>
                 <div className="bg-[#0B0D12]/60 p-4 rounded-xl border border-slate-800/40">
-                  <h4 className="text-xs font-semibold text-purple-400 uppercase tracking-wider mb-2">3. Floating Inspector</h4>
-                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                  <h4 className="text-sm font-semibold text-purple-400 uppercase tracking-wider mb-2">3. Floating Inspector</h4>
+                  <p className="text-xs text-slate-400 leading-relaxed">
                     Uses Chrome's display configuration APIs to query viewport bounds. Automatically splits coordinates, spawning the target testing page fully maximized in the background, and anchoring the Testjin application console to the right side as a floating inspector panel.
                   </p>
                 </div>
@@ -843,14 +843,14 @@ export default function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2 flex flex-col gap-4">
                   <div>
-                    <h4 className="font-semibold text-slate-200 text-xs mb-1">💡 Decoupled Automation Sandbox</h4>
-                    <p className="text-[11px] text-slate-400 leading-relaxed">
+                    <h4 className="font-semibold text-slate-200 text-sm mb-1.5">💡 Decoupled Automation Sandbox</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
                       Unlike heavy Playwright setups running in virtual machines (which incur high latency and compute costs), Testjin compiles test runs into code entirely in the client-side sandbox. It is zero-infrastructure: no runner nodes, local Docker instances, or remote headful setups.
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-200 text-xs mb-1">⚡ SPA Event Pipeline Integration</h4>
-                    <p className="text-[11px] text-slate-400 leading-relaxed">
+                    <h4 className="font-semibold text-slate-200 text-sm mb-1.5">⚡ SPA Event Pipeline Integration</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
                       Standard DOM events fail on reactive SPAs because React/Vue override element setter descriptors. Testjin intercepts element properties at the prototype level, triggering full event chains (<code className="text-cyan-400 text-[10px]">input</code> &rarr; <code className="text-cyan-400 text-[10px]">change</code> &rarr; <code className="text-cyan-400 text-[10px]">keydown</code>) and native submits to guarantee framework state synchronization.
                     </p>
                   </div>
@@ -858,11 +858,11 @@ export default function Home() {
 
                 <div className="bg-[#080A0E] p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
                   <div>
-                    <h4 className="font-semibold text-slate-200 text-xs mb-1">🧑‍💻 Developer &amp; Project Contact</h4>
-                    <p className="text-[11px] text-slate-400 mb-3 leading-relaxed">
+                    <h4 className="font-semibold text-slate-200 text-sm mb-1.5">🧑‍💻 Developer &amp; Project Contact</h4>
+                    <p className="text-xs text-slate-400 mb-3 leading-relaxed">
                       Created by <strong>Josh Chamo</strong>. Designed as a zero-infra AI agent workbench for automated QA analysis, custom selectors compilation, and Playwright execution scaffolding.
                     </p>
-                    <div className="flex flex-col gap-1.5 font-mono text-[11px] text-slate-300">
+                    <div className="flex flex-col gap-1.5 font-mono text-xs text-slate-300">
                       <div><span className="text-slate-500">Developer:</span> Josh Chamo</div>
                       <div><span className="text-slate-500">Email:</span> <a href="mailto:joshchamo@gmail.com" className="text-cyan-400 hover:underline">joshchamo@gmail.com</a></div>
                       <div><span className="text-slate-500">Repository:</span> <a href="https://github.com/joshchamo/Testjin" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline">github.com/joshchamo/Testjin</a></div>
