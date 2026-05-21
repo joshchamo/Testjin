@@ -473,7 +473,7 @@ export default function Home() {
                 <li>Open Chrome to <code className="text-cyan-400 font-mono">chrome://extensions/</code></li>
                 <li>Toggle <strong>Developer Mode</strong> in the top-right</li>
                 <li>Click <strong>Load unpacked</strong></li>
-                <li>Select this directory:<br/><code className="text-cyan-400 font-mono text-[10px] break-all block mt-0.5 bg-slate-950 p-1 rounded">/Users/jchamo/Desktop/QA/Testjin/extension</code></li>
+                <li>Select this directory:<br/><code className="text-cyan-400 font-mono text-[10px] break-all block mt-0.5 bg-slate-950 p-1 rounded">[your-cloned-repo]/extension</code></li>
                 <li>Copy the extension's ID and paste it in the field above</li>
               </ol>
             </div>
