@@ -455,10 +455,19 @@ export default function Home() {
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
-                Extension Required
+                Extension Not Detected
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed">
-                To run tests, you must load the included unpacked Chrome Extension:
+                The majority of Testjin's core features are fully functional as-is:
+              </p>
+              <ul className="list-disc list-inside text-xs text-slate-300 flex flex-col gap-1 pl-1">
+                <li>Generating Test Plans via NLP</li>
+                <li>Generating detailed Action Lists</li>
+                <li>Compiling & exporting Playwright TS Code</li>
+              </ul>
+              <div className="border-t border-slate-800 my-1" />
+              <p className="text-xs text-slate-400 leading-relaxed font-semibold text-amber-300">
+                To run tests visually in the browser (E2E execution), load the local extension:
               </p>
               <ol className="list-decimal list-inside text-xs text-slate-300 flex flex-col gap-1.5 pl-1">
                 <li>Open Chrome to <code className="text-cyan-400 font-mono">chrome://extensions/</code></li>

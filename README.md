@@ -74,6 +74,23 @@ To demonstrate Testjin's capabilities immediately without configuration, the web
 
 The app uses a guided assistant banner with glowing pulsing prompts (`tour-pulse-active`) to walk users through the entire **Generate -> Execute -> Export** pipeline.
 
+## 💡 Extension vs. Web App Capabilities
+
+To make the app lightweight and accessible, **the majority of Testjin's core agentic workspace works directly in the web browser (e.g., Vercel deployment) without any installation**:
+
+| Feature / Capability | Without Extension | With Extension |
+| --- | :---: | :---: |
+| **Parsing Target Page Layouts** (via Jina Reader) | ✅ Yes | ✅ Yes |
+| **Generating NLP Test Plans** (via Gemini 2.5 Flash Lite) | ✅ Yes | ✅ Yes |
+| **Interactive Step Action List Visualization** | ✅ Yes | ✅ Yes |
+| **Playwright TypeScript Code Compilation** | ✅ Yes | ✅ Yes |
+| **One-Click Script Copying / Exporting** | ✅ Yes | ✅ Yes |
+| **Live E2E Test Execution in Browser** | ❌ No | ✅ Yes |
+| **Dual Window Pinned Inspector Layout** | ❌ No | ✅ Yes |
+| **Target Element Cyan Glowing Telemetry** | ❌ No | ✅ Yes |
+
+This means casual visitors, evaluators, or hiring managers can immediately test the generation flow, visualize steps, and export complete Playwright scripts directly on Vercel without downloading anything. The extension is strictly required for active in-browser E2E execution.
+
 ---
 
 ## 🚀 Installation & Local Setup
