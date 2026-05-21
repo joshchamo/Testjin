@@ -48,9 +48,10 @@ export default function Home() {
   const [currentStepIndex, setCurrentStepIndex] = useState<number | null>(null);
   const [tourStep, setTourStep] = useState<'generate' | 'run' | 'export' | null>(null);
   
-  // UI Tabs and Copy state
+  // UI Tabs, Copy, and Deep Dive state
   const [activeTab, setActiveTab] = useState<'steps' | 'code'>('steps');
   const [copied, setCopied] = useState<boolean>(false);
+  const [showDeepDive, setShowDeepDive] = useState<boolean>(false);
 
   const logsEndRef = useRef<HTMLDivElement>(null);
   const activePortRef = useRef<any>(null);
@@ -335,6 +336,18 @@ export default function Home() {
                 className="w-40 md:w-64 bg-slate-900 border border-slate-800 rounded px-2 py-1 text-xs font-mono text-slate-300 focus:outline-none focus:border-cyan-500 transition"
               />
             </div>
+            
+            <a 
+              href="https://github.com/joshchamo/Testjin" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-slate-400 hover:text-white transition p-1.5 rounded-lg hover:bg-slate-800 flex items-center justify-center shrink-0"
+              title="View on GitHub"
+            >
+              <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+            </a>
           </div>
         </div>
       </header>
@@ -775,6 +788,92 @@ export default function Home() {
         </section>
 
       </main>
+
+      {/* Technical Deep Dive Panel */}
+      <section className="max-w-7xl w-full mx-auto px-4 md:px-6 pb-6">
+        <div className="border border-slate-800/80 bg-[#0F1219]/40 rounded-2xl overflow-hidden shadow-xl">
+          <button
+            onClick={() => setShowDeepDive(!showDeepDive)}
+            className="w-full px-6 py-4 flex items-center justify-between hover:bg-slate-800/30 transition text-left cursor-pointer"
+          >
+            <div className="flex items-center gap-2.5">
+              <svg className="h-5 w-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+              <span className="text-sm font-semibold text-slate-200">Technical Architecture &amp; Deep Dive</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-indigo-400 font-mono hidden sm:inline">view engineering specifications</span>
+              <svg 
+                className={`h-4.5 w-4.5 text-slate-400 transition-transform duration-300 ${showDeepDive ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </button>
+
+          {showDeepDive && (
+            <div className="p-6 border-t border-slate-800/80 bg-[#0A0D14]/80 text-sm text-slate-350 flex flex-col gap-6 leading-relaxed">
+              {/* Architecture Columns */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-[#0B0D12]/60 p-4 rounded-xl border border-slate-800/40">
+                  <h4 className="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">1. The Command Center</h4>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    React workspace built on Next.js. Retrieves layouts using the Jina Reader API to get a semantic Markdown representation of the page DOM. Passes layout markdown + instructions to Google Gemini 2.5 Flash Lite using dynamic structured JSON schemas to deterministically model sequential test plans.
+                  </p>
+                </div>
+                <div className="bg-[#0B0D12]/60 p-4 rounded-xl border border-slate-800/40">
+                  <h4 className="text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-2">2. The Execution Engine</h4>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    Manifest V3 Extension background/content scripts acting as a headless sandbox. Relays actions via message-passing ports, executing native DOM sequences to bypass synthetic framework traps (React/Vue), and verifying strict geometric dimensions for visibility.
+                  </p>
+                </div>
+                <div className="bg-[#0B0D12]/60 p-4 rounded-xl border border-slate-800/40">
+                  <h4 className="text-xs font-semibold text-purple-400 uppercase tracking-wider mb-2">3. Floating Inspector</h4>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
+                    Uses Chrome's display configuration APIs to query viewport bounds. Automatically splits coordinates, spawning the target testing page fully maximized in the background, and anchoring the Testjin application console to the right side as a floating inspector panel.
+                  </p>
+                </div>
+              </div>
+
+              {/* In-depth details */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2 flex flex-col gap-4">
+                  <div>
+                    <h4 className="font-semibold text-slate-200 text-xs mb-1">💡 Decoupled Automation Sandbox</h4>
+                    <p className="text-[11px] text-slate-400 leading-relaxed">
+                      Unlike heavy Playwright setups running in virtual machines (which incur high latency and compute costs), Testjin compiles test runs into code entirely in the client-side sandbox. It is zero-infrastructure: no runner nodes, local Docker instances, or remote headful setups.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-200 text-xs mb-1">⚡ SPA Event Pipeline Integration</h4>
+                    <p className="text-[11px] text-slate-400 leading-relaxed">
+                      Standard DOM events fail on reactive SPAs because React/Vue override element setter descriptors. Testjin intercepts element properties at the prototype level, triggering full event chains (<code className="text-cyan-400 text-[10px]">input</code> &rarr; <code className="text-cyan-400 text-[10px]">change</code> &rarr; <code className="text-cyan-400 text-[10px]">keydown</code>) and native submits to guarantee framework state synchronization.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-[#080A0E] p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                  <div>
+                    <h4 className="font-semibold text-slate-200 text-xs mb-1">🧑‍💻 Developer &amp; Project Contact</h4>
+                    <p className="text-[11px] text-slate-400 mb-3 leading-relaxed">
+                      Created by <strong>Josh Chamo</strong>. Designed as a zero-infra AI agent workbench for automated QA analysis, custom selectors compilation, and Playwright execution scaffolding.
+                    </p>
+                    <div className="flex flex-col gap-1.5 font-mono text-[11px] text-slate-300">
+                      <div><span className="text-slate-500">Developer:</span> Josh Chamo</div>
+                      <div><span className="text-slate-500">Email:</span> <a href="mailto:joshchamo@gmail.com" className="text-cyan-400 hover:underline">joshchamo@gmail.com</a></div>
+                      <div><span className="text-slate-500">Repository:</span> <a href="https://github.com/joshchamo/Testjin" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline">github.com/joshchamo/Testjin</a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="border-t border-slate-900 bg-[#07090F] py-4 text-center text-xs text-slate-600">
