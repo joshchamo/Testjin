@@ -46,12 +46,15 @@ export async function POST(req: Request) {
 
     // 1. Fetch the semantic markdown of the target URL using Jina Reader API
     const jinaUrl = `https://r.jina.ai/${url.trim()}`;
+    const headers: Record<string, string> = {
+      'Accept': 'text/plain'
+    };
+    if (process.env.JINA_API_KEY) {
+      headers['Authorization'] = `Bearer ${process.env.JINA_API_KEY}`;
+    }
     const jinaRes = await fetch(jinaUrl, {
       method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${process.env.JINA_API_KEY || ''}`,
-        'Accept': 'text/plain'
-      }
+      headers
     });
 
     if (!jinaRes.ok) {
