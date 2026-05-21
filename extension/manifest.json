@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Testjin QA Automation Runner",
+  "version": "1.0",
+  "description": "Headless execution runner for the Testjin QA Automation workbench.",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "system.display"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "externally_connectable": {
+    "matches": [
+      "http://localhost:3000/*",
+      "http://localhost:3001/*",
+      "http://localhost:3002/*"
+    ]
+  }
+}
